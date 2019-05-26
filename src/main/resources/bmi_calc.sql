@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.23)
 # Database: bmi_calc
-# Generation Time: 2019-05-26 02:58:41 +0000
+# Generation Time: 2019-05-26 04:50:41 +0000
 # ************************************************************
 
 
@@ -89,6 +89,16 @@ CREATE TABLE `users` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+
+INSERT INTO `users` (`id`, `name`, `surname`, `username`, `password`, `height`)
+VALUES
+	(1,'Shayant','Sital','ssital','123',182),
+	(2,'Tony','Stark','tstark','123',180);
+
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 

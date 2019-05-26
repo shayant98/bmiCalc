@@ -36,7 +36,14 @@ public class UserRepository {
             System.out.println("resultset: " + rs);
             //STEP 5: Extract data from result set
             while (rs.next()) {
-                UserList.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("surname"), rs.getString("username"), rs.getString("name"), rs.getInt("height")));
+                UserList.add(new User(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("username"),
+                        rs.getString("name"),
+                        rs.getInt("height"))
+                );
             }
             rs.close();
 
