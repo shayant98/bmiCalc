@@ -53,4 +53,28 @@ public class UserRepository {
         }
         return UserList;
     }
+
+
+public User findUserById(int id){
+    User user = null;
+    PreparedStatement stmt;
+    String sql = "SELECT * FROM users WHERE id = ? LIMIT 1";
+    try {
+        stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        ResultSet rs = stmt.executeQuery();
+        rs.next();
+        user = new User(rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("surname"),
+                rs.getString("username"),
+                rs.getString("name"),
+                rs.getInt("height"));
+        rs.close();
+    }catch (SQLException e){
+        e.printStackTrace();
+    }
+    return user;
+}
+
 }

@@ -8,6 +8,7 @@ public class Application {
 
         //test db function
        userRepository.findAllUsers().forEach(user -> System.out.println(user.getName()));
+        System.out.println(userRepository.findUserById(1).getName());
 
     }
 }
