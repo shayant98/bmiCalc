@@ -1,6 +1,8 @@
 package sr.unasat.bmi.calculator.app;
 
 import sr.unasat.bmi.calculator.entities.User;
+import sr.unasat.bmi.calculator.repositories.BmiLogRepository;
+import sr.unasat.bmi.calculator.repositories.MenuRepository;
 import sr.unasat.bmi.calculator.repositories.UserRepository;
 
 import java.util.Scanner;
@@ -29,21 +31,28 @@ public class Application {
 
         if(isLoggedIn){
             User loggedInUser = userRepository.findUserByUsername(username);
-            System.out.println("Please choose one:");
-            System.out.println("[1] Calculate BMI");
-            System.out.println("[2] Calculate BMI");
-            System.out.println("[3] Calculate BMI");
-            System.out.println("[4] Calculate BMI");
-            System.out.println("[5] Calculate BMI");
-            System.out.println("[6] Calculate BMI");
-            System.out.println("[7] Calculate BMI");
+            loggedInUser.setLoggedIn(true);
+            MenuRepository menuRepository = new MenuRepository(loggedInUser.isLoggedIn());
+            System.out.println("---------- Menu ----------");
+            for (int i = 0; i < menuRepository.showMenu().length; i++) {
+                System.out.println("["+i+"]"+" "+ menuRepository.showMenu()[i]);
+            }
             int chosenMenuOption = userInput.nextInt();
-            if (chosenMenuOption == 1){
-                System.out.println("BMI Calc");
+            String activeMenuOption = menuRepository.showMenuOption(chosenMenuOption);
+            System.out.println("---------- "+activeMenuOption+" ----------");
+            if (activeMenuOption == "BMI"){
+                //show user height
+                System.out.println("Height: "+ loggedInUser.getHeight());
+
+                System.out.println("Weight:");
+                int userWeight =  userInput.nextInt();
+                BmiLogRepository bmiLogRepository = new BmiLogRepository();
+
+                //get BMI value
+                double userBmi = bmiLogRepository.calculateBMI(loggedInUser.getHeight(), userWeight);
+                System.out.println(Math.round(userBmi * 100.0) / 100.0); //round up to 2 decimals
             }
-            if(chosenMenuOption == 2){
-                System.out.println("other option");
-            }
+
         }else{
             System.out.println("check given info");
         }

@@ -7,9 +7,10 @@ public class User {
     private String surname;
     private String username;
     private String password;
-    private int height;
+    private double height;
+    private boolean isLoggedIn = false;
 
-    public User(int id, String name, String surname, String username, String password, int height) {
+    public User(int id, String name, String surname, String username, String password, double height) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -58,12 +59,20 @@ public class User {
         this.password = password;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 
     @Override

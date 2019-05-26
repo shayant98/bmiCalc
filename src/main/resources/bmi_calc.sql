@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.23)
 # Database: bmi_calc
-# Generation Time: 2019-05-26 04:50:41 +0000
+# Generation Time: 2019-05-26 22:41:33 +0000
 # ************************************************************
 
 
@@ -83,7 +83,7 @@ CREATE TABLE `users` (
   `surname` varchar(50) NOT NULL DEFAULT '',
   `username` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(50) NOT NULL DEFAULT '',
-  `height` int(11) NOT NULL,
+  `height` float NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   KEY `id` (`id`)
@@ -94,8 +94,8 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `name`, `surname`, `username`, `password`, `height`)
 VALUES
-	(1,'Shayant','Sital','ssital','123',182),
-	(2,'Tony','Stark','tstark','123',180);
+	(1,'Shayant','Sital','ssital','123',1.82),
+	(2,'Tony','Stark','tstark','123',1.82);
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;

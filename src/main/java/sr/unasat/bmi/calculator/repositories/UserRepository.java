@@ -24,8 +24,6 @@ public class UserRepository {
             execption.printStackTrace();
         }
     }
-
-
     public List<User> findAllUsers() {
         List<User> UserList = new ArrayList<>();
         Statement stmt;
@@ -42,7 +40,7 @@ public class UserRepository {
                         rs.getString("surname"),
                         rs.getString("username"),
                         rs.getString("name"),
-                        rs.getInt("height"))
+                        rs.getDouble("height"))
                 );
             }
             rs.close();
@@ -53,9 +51,7 @@ public class UserRepository {
         }
         return UserList;
     }
-
-
-public User findUserById(int id){
+    public User findUserById(int id){
     User user = null;
     PreparedStatement stmt;
     String sql = "SELECT * FROM users WHERE id = ? LIMIT 1";
@@ -69,7 +65,7 @@ public User findUserById(int id){
                 rs.getString("surname"),
                 rs.getString("username"),
                 rs.getString("name"),
-                rs.getInt("height"));
+                rs.getDouble("height"));
         rs.close();
     }catch (SQLException e){
         e.printStackTrace();
@@ -94,15 +90,14 @@ public User findUserById(int id){
                     rs.getString("surname"),
                     rs.getString("username"),
                     rs.getString("name"),
-                    rs.getInt("height"));
+                    rs.getDouble("height"));
             }
             rs.close();
         }catch (SQLException e){
 //            e.printStackTrace();
         }
         return user;
-    }
-
+    };
     public boolean login(String username, String password){
         PreparedStatement stmt;
         String sql = "SELECT * FROM users WHERE username= ? AND password = ?";

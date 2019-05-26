@@ -15,12 +15,14 @@ public class BmiLogRepository {
             String PASS = System.getenv("PASSWORD");
 
             connection = DriverManager.getConnection(URL,USER,PASS);
-            System.out.println(connection);
-            System.out.println();
-
-
         }catch (SQLException execption){
             execption.printStackTrace();
         }
+    }
+
+
+    public double calculateBMI(double height, int weight) {
+       double bmiFormule = weight/Math.pow(height,2);
+        return bmiFormule;
     }
 }
