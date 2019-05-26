@@ -76,5 +76,52 @@ public User findUserById(int id){
     }
     return user;
 }
+    public User findUserByUsername(String username){
+        User user = null;
+        PreparedStatement stmt;
+        String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            if (!rs.isBeforeFirst() ) {
+                System.out.println("No user with given info");
+            }else{
+                rs.next();
+
+            user = new User(rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("surname"),
+                    rs.getString("username"),
+                    rs.getString("name"),
+                    rs.getInt("height"));
+            }
+            rs.close();
+        }catch (SQLException e){
+//            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public boolean login(String username, String password){
+        PreparedStatement stmt;
+        String sql = "SELECT * FROM users WHERE username= ? AND password = ?";
+        try{
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1,username);
+            stmt.setString(2,password);
+            ResultSet rs = stmt.executeQuery();
+            if(!rs.isBeforeFirst()){
+                return false;
+            }else{
+                rs.next();
+
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 }
