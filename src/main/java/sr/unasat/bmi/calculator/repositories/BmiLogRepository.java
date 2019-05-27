@@ -31,16 +31,16 @@ public class BmiLogRepository {
     public String checkBmiRange(double bmi){
         String bmiMessage = "";
         if(bmi < 18.5){
-            bmiMessage =  "U bent ondergewicht";
+            bmiMessage =  "You are underweight";
         }
         if(bmi >= 18.5 && bmi <= 24.9){
-            bmiMessage =  "normaal gewicht";
+            bmiMessage =  "You are healthy";
         }
         if(bmi >= 25 && bmi <= 29.9){
-            bmiMessage = "U bent overgewicht";
+            bmiMessage = "You bent overweight";
         }
         if(bmi >= 30){
-            bmiMessage = "u leidt aan obesitas....mpp fat beest";
+            bmiMessage = "You are obese";
         }
         return bmiMessage;
     }

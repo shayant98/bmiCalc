@@ -28,7 +28,7 @@ public class BmiCalculator {
 
         //get BMI value
         double userBmi = bmiLogRepository.calculateBMI(loggedInUser.getHeight(), userWeight);
-        System.out.println(userBmi);
+        System.out.println("Your Body Mass Index is: " + userBmi);
         String bmiMessage = bmiLogRepository.checkBmiRange(userBmi);
         System.out.println(bmiMessage);
         Helper helper = new Helper(loggedInUser);
