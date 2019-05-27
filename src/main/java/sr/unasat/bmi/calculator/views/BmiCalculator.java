@@ -1,14 +1,16 @@
 package sr.unasat.bmi.calculator.views;
 
+import sr.unasat.bmi.calculator.app.Application;
 import sr.unasat.bmi.calculator.entities.User;
 import sr.unasat.bmi.calculator.repositories.BmiLogRepository;
 import sr.unasat.bmi.calculator.services.Helper;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
-public class BmiCalculator {
+class BmiCalculator extends Application {
     private User loggedInUser;
-    Scanner userInput = new Scanner(System.in); //om userinput van CLI te accepteren
+    Scanner userInput = new Scanner(System.in); //to read user input from console
 
     public BmiCalculator(User loggedInUser) {
         this.loggedInUser = loggedInUser;
@@ -30,6 +32,11 @@ public class BmiCalculator {
         double userBmi = bmiLogRepository.calculateBMI(loggedInUser.getHeight(), userWeight);
         System.out.println("Your Body Mass Index is: " + userBmi);
         String bmiMessage = bmiLogRepository.checkBmiRange(userBmi);
+        try {
+            bmiLogRepository.InsertNewBmiLog(loggedInUser.getId(),userWeight,userBmi);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
         System.out.println(bmiMessage);
         Helper helper = new Helper();
         helper.returnToMenu(loggedInUser);

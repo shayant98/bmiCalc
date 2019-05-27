@@ -5,13 +5,15 @@ public class MealPlan {
     private int id;
     private String name;
     private int type;
+    private String typeName;
     private int calorie;
 
-    public MealPlan(int id, String name, int type, int calorie) {
+    public MealPlan(int id, String name, int type,String typeName, int calorie) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.calorie = calorie;
+        this.typeName = typeName;
     }
 
     public int getId() {
@@ -44,6 +46,14 @@ public class MealPlan {
 
     public void setCalorie(int calorie) {
         this.calorie = calorie;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     @Override

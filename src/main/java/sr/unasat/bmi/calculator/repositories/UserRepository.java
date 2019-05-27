@@ -94,10 +94,10 @@ public class UserRepository {
             }
             rs.close();
         }catch (SQLException e){
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         return user;
-    };
+    }
     public boolean login(String username, String password){
         PreparedStatement stmt;
         String sql = "SELECT * FROM users WHERE username= ? AND password = ?";

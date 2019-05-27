@@ -1,7 +1,6 @@
 package sr.unasat.bmi.calculator.repositories;
 
 import sr.unasat.bmi.calculator.entities.BmiLog;
-import sr.unasat.bmi.calculator.entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -49,11 +48,12 @@ public class BmiLogRepository {
     public List<BmiLog> getAllBmiLogByUserId(int id){
         List<BmiLog> logList = new ArrayList<>();
         PreparedStatement stmt;
-        String sql = "select * from bmi_logs where user_id = ? ORDER BY date desc LIMIT 10" ;
+        String sql = "select * from bmi_logs where user_id = ? ORDER BY ? asc LIMIT 10" ;
 
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1, id);
+            stmt.setString(2,"date");
             ResultSet rs = stmt.executeQuery();
             //STEP 5: Extract data from result set
             while (rs.next()) {
@@ -69,14 +69,14 @@ public class BmiLogRepository {
         return logList;
     }
 
-
     public BmiLog getSingleBmiLogByUserId(int id){
         BmiLog log = null;
         PreparedStatement stmt;
-        String sql = "SELECT * FROM bmi_logs WHERE user_id = ? ORDER BY date DESC LIMIT 1";
+        String sql = "SELECT * FROM bmi_logs WHERE user_id = ? ORDER BY ? asc  LIMIT 1";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1,id);
+            stmt.setString(2,"date");
             ResultSet rs = stmt.executeQuery();
             if (!rs.isBeforeFirst() ) {
                 System.out.println("No user with given info");
@@ -90,6 +90,35 @@ public class BmiLogRepository {
         }
         return log;
 
+    }
+
+    public void InsertNewBmiLog(int user_id,double weight,double bmi) throws SQLException{
+        PreparedStatement stmt= null;
+        String sql = "INSERT INTO bmi_logs (user_id,weight,bmi,date) VALUES (?,?,?,?)";
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1,user_id);
+            stmt.setDouble(2,weight);
+            stmt.setDouble(3,bmi);
+            stmt.setDate(4,getCurrentDate());
+
+            stmt.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            if (stmt != null){
+                stmt.close();
+            }
+            if (connection != null){
+                connection.close();
+            }
+        }
+    }
+
+    private static java.sql.Date getCurrentDate(){
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Date(today.getTime());
     }
 }
 

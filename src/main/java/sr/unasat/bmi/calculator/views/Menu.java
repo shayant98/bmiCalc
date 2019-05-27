@@ -5,17 +5,17 @@ import sr.unasat.bmi.calculator.entities.User;
 import java.util.Scanner;
 
 public class Menu {
-    Scanner userInput = new Scanner(System.in); //om userinput van CLI te accepteren
+    private Scanner userInput = new Scanner(System.in); //om userinput van CLI te accepteren
     private String[] menuOptions = {
             "BMI Calculator",
             "BMI History",
-            "Log meals",
-            "View meals",
-            "Delete meals",
-            "Update meals",
+            "Log Meals",
+            "View Meals",
+            "Delete Meals",
+            "Update Meals",
             "View user info",
     };
-    User loggedInUser;
+    private User loggedInUser;
 
     public Menu(User loggedInUser) {
         this.loggedInUser = loggedInUser;
@@ -49,6 +49,8 @@ public class Menu {
                 break;
             case "View Meals":
                 System.out.println("---------- View Meals ----------");
+                ViewMeals viewMeals = new ViewMeals(loggedInUser);
+                viewMeals.showViewMealsScreen();
                 break;
             case "Update Meals":
                 System.out.println("---------- Update Meals ----------");
@@ -58,11 +60,13 @@ public class Menu {
                 UserInfo userInfo = new UserInfo(loggedInUser);
                 userInfo.showUserInfoScreen();
                 break;
+            default:
+                System.out.println(activeMenuOption);
         }
 
     }
 
-    public String showMenuOption(int menuItem){
+    private String showMenuOption(int menuItem){
         return menuOptions[menuItem];
     }
 

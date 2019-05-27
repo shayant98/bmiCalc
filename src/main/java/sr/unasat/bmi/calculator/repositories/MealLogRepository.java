@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MealLogRepository {
-    private Connection connection;
     public MealLogRepository() {
 
         try {
@@ -14,7 +13,7 @@ public class MealLogRepository {
             String USER = System.getenv("USERNAME");
             String PASS = System.getenv("PASSWORD");
 
-            connection = DriverManager.getConnection(URL,USER,PASS);
+            Connection connection = DriverManager.getConnection(URL, USER, PASS);
             System.out.println(connection);
             System.out.println();
 

@@ -5,7 +5,7 @@ import sr.unasat.bmi.calculator.entities.User;
 import sr.unasat.bmi.calculator.repositories.BmiLogRepository;
 import sr.unasat.bmi.calculator.services.Helper;
 
-public class UserInfo {
+class UserInfo {
     private User loggedInUser;
 
     public UserInfo(User loggedInUser) {
