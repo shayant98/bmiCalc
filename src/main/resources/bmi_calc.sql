@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.23)
 # Database: bmi_calc
-# Generation Time: 2019-05-27 04:20:20 +0000
+# Generation Time: 2019-05-27 23:37:42 +0000
 # ************************************************************
 
 
@@ -41,8 +41,12 @@ LOCK TABLES `bmi_logs` WRITE;
 
 INSERT INTO `bmi_logs` (`id`, `user_id`, `weight`, `bmi`, `date`)
 VALUES
-	(1,1,233,70,'2019-05-27'),
-	(2,2,243,70,'2019-05-27');
+	(3,1,233,70.34,'2019-05-27'),
+	(4,1,65,19.62,'2019-05-27'),
+	(5,1,123,37.13,'2019-05-27'),
+	(6,1,123,37.13,'2019-05-26'),
+	(7,1,123,37.13,'2019-05-27'),
+	(8,1,123,37.13,'2019-05-27');
 
 /*!40000 ALTER TABLE `bmi_logs` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -75,11 +79,47 @@ DROP TABLE IF EXISTS `meal_plans`;
 CREATE TABLE `meal_plans` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
-  `type` int(11) NOT NULL,
+  `type` int(11) unsigned NOT NULL,
   `calorie` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `type` (`type`),
+  CONSTRAINT `meal_plans_ibfk_1` FOREIGN KEY (`type`) REFERENCES `meal_types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `meal_plans` WRITE;
+/*!40000 ALTER TABLE `meal_plans` DISABLE KEYS */;
+
+INSERT INTO `meal_plans` (`id`, `name`, `type`, `calorie`)
+VALUES
+	(7,'C. Salad',7,123);
+
+/*!40000 ALTER TABLE `meal_plans` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table meal_types
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `meal_types`;
+
+CREATE TABLE `meal_types` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `meal_types` WRITE;
+/*!40000 ALTER TABLE `meal_types` DISABLE KEYS */;
+
+INSERT INTO `meal_types` (`id`, `name`)
+VALUES
+	(7,'KETO'),
+	(8,'HALAL'),
+	(9,'KOSHER'),
+	(10,'GLUTEN-FREE');
+
+/*!40000 ALTER TABLE `meal_types` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table users
