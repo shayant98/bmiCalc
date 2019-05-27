@@ -4,13 +4,15 @@ public class BmiLog {
 
     private int id;
     private int userId;
-    private int bmi;
+    private double bmi;
+    private double weight;
     private String date;
 
-    public BmiLog(int id, int userId, int bmi, String date) {
+    public BmiLog(int id, int userId, double bmi,double weight, String date) {
         this.id = id;
         this.userId = userId;
         this.bmi = bmi;
+        this.weight = weight;
         this.date = date;
     }
 
@@ -22,7 +24,7 @@ public class BmiLog {
         return userId;
     }
 
-    public int getBmi() {
+    public double getBmi() {
         return bmi;
     }
 
@@ -38,13 +40,22 @@ public class BmiLog {
         this.userId = userId;
     }
 
-    public void setBmi(int bmi) {
+    public void setBmi(double bmi) {
         this.bmi = bmi;
     }
 
     public void setDate(String date) {
         this.date = date;
     }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
 
     @Override
     public String toString() {

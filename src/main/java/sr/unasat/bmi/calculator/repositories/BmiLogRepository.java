@@ -1,8 +1,10 @@
 package sr.unasat.bmi.calculator.repositories;
 
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Connection;
+import sr.unasat.bmi.calculator.entities.BmiLog;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class BmiLogRepository {
@@ -23,6 +25,48 @@ public class BmiLogRepository {
 
     public double calculateBMI(double height, int weight) {
        double bmiFormule = weight/Math.pow(height,2);
-        return bmiFormule;
+        return Math.round(bmiFormule * 100.0) / 100.0 ;
+    }
+
+    public String checkBmiRange(double bmi){
+        String bmiMessage = "";
+        if(bmi < 18.5){
+            bmiMessage =  "U bent ondergewicht";
+        }
+        if(bmi >= 18.5 && bmi <= 24.9){
+            bmiMessage =  "normaal gewicht";
+        }
+        if(bmi >= 25 && bmi <= 29.9){
+            bmiMessage = "U bent overgewicht";
+        }
+        if(bmi >= 30){
+            bmiMessage = "u leidt aan obesitas....mpp fat beest";
+        }
+        return bmiMessage;
+    }
+
+    public List<BmiLog> getAllBmiLogByUserId(int id){
+        List<BmiLog> logList = new ArrayList<>();
+        PreparedStatement stmt;
+        String sql = "select * from bmi_logs where user_id = ? ORDER BY date desc LIMIT 10" ;
+
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            //STEP 5: Extract data from result set
+            while (rs.next()) {
+                logList.add(new BmiLog(rs.getInt("id"), rs.getInt("user_id"),rs.getDouble("bmi"),rs.getDouble("weight"),rs.getString("date"))
+                );
+            }
+            rs.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return logList;
     }
 }
+
+
