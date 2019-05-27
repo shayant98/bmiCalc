@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.23)
 # Database: bmi_calc
-# Generation Time: 2019-05-26 22:41:33 +0000
+# Generation Time: 2019-05-27 04:20:20 +0000
 # ************************************************************
 
 
@@ -28,14 +28,24 @@ DROP TABLE IF EXISTS `bmi_logs`;
 CREATE TABLE `bmi_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `weight` int(11) NOT NULL,
-  `bmi` int(11) NOT NULL,
-  `date` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `weight` float NOT NULL,
+  `bmi` float NOT NULL,
+  `date` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `bmi_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `bmi_logs` WRITE;
+/*!40000 ALTER TABLE `bmi_logs` DISABLE KEYS */;
+
+INSERT INTO `bmi_logs` (`id`, `user_id`, `weight`, `bmi`, `date`)
+VALUES
+	(1,1,233,70,'2019-05-27'),
+	(2,2,243,70,'2019-05-27');
+
+/*!40000 ALTER TABLE `bmi_logs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table meal_logs
