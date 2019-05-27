@@ -19,7 +19,7 @@ public class BmiHistory {
            String bmiMessage =  bmiLogRepository.checkBmiRange(bmiLog.getBmi());
             System.out.println(bmiLog.getDate() + "| " + bmiLog.getWeight()+ " KG| " + bmiLog.getBmi()+ "| -----> "+ bmiMessage);
         });
-        Helper helper = new Helper(loggedInUser);
-        helper.returnToMenu();
+        Helper helper = new Helper();
+        helper.returnToMenu(loggedInUser);
     }
 }

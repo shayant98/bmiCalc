@@ -55,6 +55,8 @@ public class Menu {
                 break;
             case "View user info":
                 System.out.println("---------- View user info ----------");
+                UserInfo userInfo = new UserInfo(loggedInUser);
+                userInfo.showUserInfoScreen();
                 break;
         }
 

@@ -1,6 +1,7 @@
 package sr.unasat.bmi.calculator.repositories;
 
 import sr.unasat.bmi.calculator.entities.BmiLog;
+import sr.unasat.bmi.calculator.entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -66,6 +67,29 @@ public class BmiLogRepository {
             e.printStackTrace();
         }
         return logList;
+    }
+
+
+    public BmiLog getSingleBmiLogByUserId(int id){
+        BmiLog log = null;
+        PreparedStatement stmt;
+        String sql = "SELECT * FROM bmi_logs WHERE user_id = ? ORDER BY date DESC LIMIT 1";
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1,id);
+            ResultSet rs = stmt.executeQuery();
+            if (!rs.isBeforeFirst() ) {
+                System.out.println("No user with given info");
+            }else{
+                rs.next();
+                log = new BmiLog(rs.getInt("id"), rs.getInt("user_id"),rs.getDouble("bmi"),rs.getDouble("weight"),rs.getString("date"));
+            }
+            rs.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return log;
+
     }
 }
 

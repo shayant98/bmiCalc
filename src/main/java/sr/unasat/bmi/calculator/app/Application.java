@@ -2,6 +2,7 @@ package sr.unasat.bmi.calculator.app;
 
 import sr.unasat.bmi.calculator.entities.User;
 import sr.unasat.bmi.calculator.repositories.UserRepository;
+import sr.unasat.bmi.calculator.services.Helper;
 import sr.unasat.bmi.calculator.views.Menu;
 
 import java.util.Scanner;
@@ -27,7 +28,8 @@ public class Application {
             Menu menu = new Menu(loggedInUser);
             menu.showMenu();
         }else{
-            System.out.println("check given info");
+            Helper helper = new Helper();
+            helper.errorMessage("No user with given info");
         }
     }
 }

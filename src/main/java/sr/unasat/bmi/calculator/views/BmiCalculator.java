@@ -31,8 +31,8 @@ public class BmiCalculator {
         System.out.println("Your Body Mass Index is: " + userBmi);
         String bmiMessage = bmiLogRepository.checkBmiRange(userBmi);
         System.out.println(bmiMessage);
-        Helper helper = new Helper(loggedInUser);
-        helper.returnToMenu();
+        Helper helper = new Helper();
+        helper.returnToMenu(loggedInUser);
 
 
     }
