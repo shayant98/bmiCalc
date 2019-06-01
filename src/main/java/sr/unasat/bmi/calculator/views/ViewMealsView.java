@@ -2,12 +2,13 @@ package sr.unasat.bmi.calculator.views;
 
 import sr.unasat.bmi.calculator.entities.User;
 import sr.unasat.bmi.calculator.repositories.MealPlanRepository;
+import sr.unasat.bmi.calculator.repositories.mealTypeRepository;
 import sr.unasat.bmi.calculator.services.Helper;
 
-public class ViewMeals {
+public class ViewMealsView {
     User loggedInUser;
 
-    public ViewMeals(User loggedInUser) {
+    public ViewMealsView(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
 
@@ -16,8 +17,9 @@ public class ViewMeals {
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
         System.out.println("ID | Name | Category | Calorie Count");
         mealPlanRepository.getAllMealPlans().forEach(mealPlan -> {
-//            System.out.println(mealPlan);
-            System.out.println(mealPlan.getId() + " | " + mealPlan.getName() + " | " + mealPlan.getTypeName()+ " | " + mealPlan.getCalorie());
+            mealTypeRepository mealTypeRepository = new mealTypeRepository();
+            String mealType = mealTypeRepository.getMealType(mealPlan.getType());
+            System.out.println(mealPlan.getId() + " | " + mealPlan.getName() + " | " + mealType + " | " + mealPlan.getCalorie());
         });
         Helper helper = new Helper();
         helper.returnToMenu(loggedInUser);

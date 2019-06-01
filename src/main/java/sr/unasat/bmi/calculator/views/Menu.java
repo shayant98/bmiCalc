@@ -36,12 +36,12 @@ public class Menu {
         switch (activeMenuOption) {
             case "BMI Calculator":
                 System.out.println("---------- BMI Calculator ----------");
-                BmiCalculator bmiCalculator = new BmiCalculator(loggedInUser);
+                BmiCalculatorView bmiCalculator = new BmiCalculatorView(loggedInUser);
                 bmiCalculator.showBmiCalculatorScreen();
                 break;
             case "BMI History":
                 System.out.println("---------- BMI History ----------");
-                BmiHistory bmiHistory = new BmiHistory(loggedInUser);
+                BmiHistoryView bmiHistory = new BmiHistoryView(loggedInUser);
                 bmiHistory.showBmiHistoryScreen();
                 break;
             case "Log Meals":
@@ -49,7 +49,7 @@ public class Menu {
                 break;
             case "View Meals":
                 System.out.println("---------- View Meals ----------");
-                ViewMeals viewMeals = new ViewMeals(loggedInUser);
+                ViewMealsView viewMeals = new ViewMealsView(loggedInUser);
                 viewMeals.showViewMealsScreen();
                 break;
             case "Update Meals":
@@ -57,7 +57,7 @@ public class Menu {
                 break;
             case "View user info":
                 System.out.println("---------- View user info ----------");
-                UserInfo userInfo = new UserInfo(loggedInUser);
+                UserInfoView userInfo = new UserInfoView(loggedInUser);
                 userInfo.showUserInfoScreen();
                 break;
             default:

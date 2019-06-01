@@ -5,10 +5,10 @@ import sr.unasat.bmi.calculator.entities.User;
 import sr.unasat.bmi.calculator.repositories.BmiLogRepository;
 import sr.unasat.bmi.calculator.services.Helper;
 
-class UserInfo {
+class UserInfoView {
     private User loggedInUser;
 
-    public UserInfo(User loggedInUser) {
+    public UserInfoView(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
 

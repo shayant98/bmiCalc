@@ -1,8 +1,12 @@
 package sr.unasat.bmi.calculator.repositories;
 
 import sr.unasat.bmi.calculator.entities.BmiLog;
+import sr.unasat.bmi.calculator.services.Database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,16 +14,8 @@ import java.util.List;
 public class BmiLogRepository {
     private Connection connection;
     public BmiLogRepository() {
-        try {
-
-            String URL = "jdbc:mysql://"+System.getenv("HOST")+":"+System.getenv("PORT")+"/bmi_calc";
-            String USER = System.getenv("USERNAME");
-            String PASS = System.getenv("PASSWORD");
-
-            connection = DriverManager.getConnection(URL,USER,PASS);
-        }catch (SQLException execption){
-            execption.printStackTrace();
-        }
+        Database database = new Database();
+        connection = database.getDBConnection();
     }
 
 
