@@ -15,7 +15,7 @@ public class UserRepository {
     }
     public List<User> findAllUsers() {
         List<User> UserList = new ArrayList<>();
-        Statement stmt;
+        Statement stmt = null;
         try {
             stmt = connection.createStatement();
             String sql = "select * from users";
@@ -38,11 +38,27 @@ public class UserRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+        }
         return UserList;
     }
     public User findUserById(int id){
     User user = null;
-    PreparedStatement stmt;
+    PreparedStatement stmt = null;
     String sql = "SELECT * FROM users WHERE id = ? LIMIT 1";
     try {
         stmt = connection.prepareStatement(sql);
@@ -59,11 +75,27 @@ public class UserRepository {
     }catch (SQLException e){
         e.printStackTrace();
     }
+    finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+        }
     return user;
 }
     public User findUserByUsername(String username){
         User user = null;
-        PreparedStatement stmt;
+        PreparedStatement stmt = null;
         String sql = "SELECT * FROM users WHERE username = ? LIMIT 1";
         try {
             stmt = connection.prepareStatement(sql);
@@ -85,10 +117,26 @@ public class UserRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }
+        finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+        }
         return user;
     }
     public boolean login(String username, String password){
-        PreparedStatement stmt;
+        PreparedStatement stmt = null;
         String sql = "SELECT * FROM users WHERE username= ? AND password = ?";
         try{
             stmt = connection.prepareStatement(sql);
@@ -104,6 +152,22 @@ public class UserRepository {
             rs.close();
         }catch (SQLException e){
             e.printStackTrace();
+        }
+        finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
         }
         return true;
     }

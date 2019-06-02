@@ -16,7 +16,7 @@ public class ViewMealsView {
     public void showViewMealsScreen(){
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
         System.out.println("ID | Name | Category | Calorie Count");
-        mealPlanRepository.getAllMealPlans().forEach(mealPlan -> {
+        mealPlanRepository.GetAllMealplans().forEach(mealPlan -> {
             mealTypeRepository mealTypeRepository = new mealTypeRepository();
             String mealType = mealTypeRepository.getMealType(mealPlan.getType());
             System.out.println(mealPlan.getId() + " | " + mealPlan.getName() + " | " + mealType + " | " + mealPlan.getCalorie());

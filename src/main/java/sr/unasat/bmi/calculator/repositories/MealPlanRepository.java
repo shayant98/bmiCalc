@@ -3,10 +3,7 @@ package sr.unasat.bmi.calculator.repositories;
 import sr.unasat.bmi.calculator.entities.MealPlan;
 import sr.unasat.bmi.calculator.services.Database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class MealPlanRepository {
         connection = database.getDBConnection();
     }
 
-    public List<MealPlan> getAllMealPlans(){
+    public List<MealPlan> GetAllMealplans(){
         List<MealPlan> mealPlanList = new ArrayList<>();
         Statement stmt;
         try {
@@ -38,6 +35,46 @@ public class MealPlanRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        finally {
+
+        }
         return mealPlanList;
+    }
+
+    public void deleteMealplanById(int mealId){
+        String sql = "DELETE FROM meal_plans WHERE id = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, mealId);
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+
+        }
+    }
+
+    public MealPlan findMealplanByid(int mealId){
+        MealPlan mealPlan = null;
+        PreparedStatement stmt = null;
+        String sql = "SELECT * FROM meal_plans WHERE id = ?";
+
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1,mealId);
+            ResultSet rs = stmt.executeQuery();
+            if(!rs.isBeforeFirst()){
+                return null;
+            }else{
+                rs.next();
+                mealPlan = new MealPlan(rs.getInt("id"),rs.getString("name"),rs.getInt("type"),rs.getInt("calorie"));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+
+        }
+        return mealPlan;
     }
 }

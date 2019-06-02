@@ -26,11 +26,12 @@ public class Menu {
 
         //Show all menu items
         for (int i = 0; i < menuOptions.length; i++) {
-             System.out.println("["+i+"]"+" "+ menuOptions[i]);
+             System.out.println("[ID]: "+ i +" - "+ menuOptions[i]);
 
         }
-
-
+        System.out.println("");
+        System.out.println("Please insert menu ID:");
+//       TODO: Validate Userinput
         int chosenMenuOption = userInput.nextInt();
         String activeMenuOption = showMenuOption(chosenMenuOption);
         switch (activeMenuOption) {
@@ -54,6 +55,11 @@ public class Menu {
                 break;
             case "Update Meals":
                 System.out.println("---------- Update Meals ----------");
+                break;
+            case "Delete Meals":
+                System.out.println("---------- Delete Meals ----------");
+                DeleteMealsView deleteMealsView = new DeleteMealsView(loggedInUser);
+                deleteMealsView.showDeleteMealsScreen();
                 break;
             case "View user info":
                 System.out.println("---------- View user info ----------");
