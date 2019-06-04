@@ -77,4 +77,20 @@ public class MealPlanRepository {
         }
         return mealPlan;
     }
+
+    public void updateMealById(MealPlan updatedMealPlan){
+        String sql = "UPDATE meal_plans SET name = ?, type = ?,calorie = ?";
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, updatedMealPlan.getName());
+            stmt.setInt(2, updatedMealPlan.getType());
+            stmt.setInt(3, updatedMealPlan.getCalorie());
+            stmt.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }finally {
+
+        }
+    }
 }

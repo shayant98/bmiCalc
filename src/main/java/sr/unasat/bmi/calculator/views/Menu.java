@@ -55,6 +55,8 @@ public class Menu {
                 break;
             case "Update Meals":
                 System.out.println("---------- Update Meals ----------");
+                UpdateMealsView updateMealsView = new UpdateMealsView(loggedInUser);
+                updateMealsView.showUpdateMealsScreen();
                 break;
             case "Delete Meals":
                 System.out.println("---------- Delete Meals ----------");
