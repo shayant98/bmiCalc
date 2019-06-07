@@ -25,7 +25,6 @@ public class LogMealsView {
             System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
         });
         System.out.println("ID of meal to log:");
-        //TODO: Validate userinput
         do {
             if(userInput.hasNextInt()){
                 int mealId = userInput.nextInt();

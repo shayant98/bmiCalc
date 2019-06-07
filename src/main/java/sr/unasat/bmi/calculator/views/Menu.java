@@ -31,7 +31,6 @@ public class Menu {
         }
         System.out.println("");
         System.out.println("Please insert menu ID:");
-//       TODO: Validate Userinput
         do {
             if(userInput.hasNextInt()){
                 int chosenMenuOption = userInput.nextInt();

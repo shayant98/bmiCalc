@@ -17,30 +17,41 @@ public class UpdateMealsView {
 
 
     public void showUpdateMealsScreen(){
+        boolean mealIdIsNumber = false;
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
         mealPlanRepository.GetAllMealplans().forEach(mealPlan -> {
             System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
         });
         System.out.println("ID of meal to update:");
-        //TODO: Validate userinput
-        int mealId = userInput.nextInt();
-        MealPlan mealToUpdate = mealPlanRepository.findMealplanByid(mealId);
-        if (mealToUpdate == null){
+        do {
+            if (userInput.hasNextInt()){
+                int mealId = userInput.nextInt();
+                MealPlan mealToUpdate = mealPlanRepository.findMealplanByid(mealId);
+                if (mealToUpdate == null){
+                    System.out.println("meal not found");
+                    mealIdIsNumber = false;
+                    continue;
+                }else{
+                    System.out.println("Meal Name: ");
+                    mealToUpdate.setName(userInput.next());
+                    System.out.println("Meal Type ID: ");
+//                    TODO: Validate meal Type
+                    userInput.nextLine(); //idk why but fixed the error
+                    mealToUpdate.setType(userInput.nextInt());
+                    System.out.println("Meal Calorie");
+                    mealToUpdate.setCalorie(userInput.nextInt());
 
-        }else{
-            System.out.println("Meal Name: ");
-            mealToUpdate.setName(userInput.next());
-            System.out.println("Meal Type ID: ");
-            userInput.nextLine(); //idk why but fixed the error
-            mealToUpdate.setType(userInput.nextInt());
-            System.out.println("Meal Calorie");
-            mealToUpdate.setCalorie(userInput.nextInt());
 
+                    mealPlanRepository.updateMealById(mealToUpdate);
+                    Helper helper = new Helper();
+                    helper.returnToMenu(loggedInUser);
+                }
+            }else{
+                userInput.next();
+                mealIdIsNumber = false;
+            }
+        }while (!mealIdIsNumber);
 
-            mealPlanRepository.updateMealById(mealToUpdate);
-            Helper helper = new Helper();
-            helper.returnToMenu(loggedInUser);
-        }
     }
 
 
