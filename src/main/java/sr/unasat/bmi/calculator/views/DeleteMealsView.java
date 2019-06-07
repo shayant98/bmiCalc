@@ -17,21 +17,35 @@ public class DeleteMealsView {
 
 
     public void showDeleteMealsScreen(){
+        boolean mealIdIsNumber = false;
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
         mealPlanRepository.GetAllMealplans().forEach(mealPlan -> {
             System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
         });
         System.out.println("ID of meal to delete:");
-         //TODO: Validate userinput
-        int mealId = userInput.nextInt();
-        MealPlan mealExists = mealPlanRepository.findMealplanByid(mealId);
-        if (mealExists == null){
+        do {
+            if (userInput.hasNextInt()){
+                int mealId = userInput.nextInt();
+                MealPlan mealExists = mealPlanRepository.findMealplanByid(mealId);
+                if (mealExists == null){
+                    System.out.println("meal not found");
+                    mealIdIsNumber = false;
+                    continue;
+                }else{
+                    System.out.println("deleting Meal...");
+                    mealPlanRepository.deleteMealplanById(mealId);
+                    Helper helper = new Helper();
+                    helper.returnToMenu(loggedInUser);
+                }
+                mealIdIsNumber = true;
+            }
+            else{
+                System.out.println("Key not recognised");
+                mealIdIsNumber = false;
+                userInput.next();
+            }
+        }while (!mealIdIsNumber);
 
-        }else{
-            mealPlanRepository.deleteMealplanById(mealId);
-            Helper helper = new Helper();
-            helper.returnToMenu(loggedInUser);
-        }
 
     }
 }

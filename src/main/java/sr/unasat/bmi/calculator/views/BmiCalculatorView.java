@@ -20,27 +20,33 @@ class BmiCalculatorView extends Application {
 
 
     public void showBmiCalculatorScreen(){
+        boolean weightIsNumber = false;
         //show user height
         System.out.println("Height: "+ loggedInUser.getHeight());
         System.out.println("Weight:");
-//        TODO: validate if value is INT
-        if(userInput.hasNextInt()){
-        int userWeight =  userInput.nextInt();
-        BmiLogRepository bmiLogRepository = new BmiLogRepository();
+        do {
+            if(userInput.hasNextInt()){
 
-        //get BMI value
-        double userBmi = bmiLogRepository.calculateBMI(loggedInUser.getHeight(), userWeight);
-        System.out.println("Your Body Mass Index is: " + userBmi);
-        String bmiMessage = bmiLogRepository.checkBmiRange(userBmi);
-        try {
-            bmiLogRepository.InsertNewBmiLog(loggedInUser.getId(),userWeight,userBmi);
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
-        System.out.println(bmiMessage);
-        Helper helper = new Helper();
-        helper.returnToMenu(loggedInUser);
+                int userWeight =  userInput.nextInt();
+                BmiLogRepository bmiLogRepository = new BmiLogRepository();
 
+                //get BMI value
+                double userBmi = bmiLogRepository.calculateBMI(loggedInUser.getHeight(), userWeight);
+                System.out.println("Your Body Mass Index is: " + userBmi);
+                String bmiMessage = bmiLogRepository.checkBmiRange(userBmi);
+                try {
+                    bmiLogRepository.InsertNewBmiLog(loggedInUser.getId(),userWeight,userBmi);
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
+                System.out.println(bmiMessage);
+                Helper helper = new Helper();
+                helper.returnToMenu(loggedInUser);
 
-    }
+                weightIsNumber = true;
+            } else {
+                weightIsNumber = false;
+                userInput.next(); }
+        }while (!weightIsNumber);
+
 }}
