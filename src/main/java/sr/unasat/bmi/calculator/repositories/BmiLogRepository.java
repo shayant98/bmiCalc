@@ -96,7 +96,7 @@ public class BmiLogRepository {
             stmt.setInt(1,user_id);
             stmt.setDouble(2,weight);
             stmt.setDouble(3,bmi);
-            stmt.setDate(4,getCurrentDate());
+            stmt.setDate(4, getCurrentDate());
 
             stmt.executeUpdate();
         } catch (SQLException e){

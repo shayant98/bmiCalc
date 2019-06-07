@@ -47,6 +47,8 @@ public class Menu {
                 break;
             case "Log Meals":
                 System.out.println("---------- Log Meals ----------");
+                LogMealsView logMealsView = new LogMealsView(loggedInUser);
+                logMealsView.showLogMealsView();
                 break;
             case "View Meals":
                 System.out.println("---------- View Meals ----------");
