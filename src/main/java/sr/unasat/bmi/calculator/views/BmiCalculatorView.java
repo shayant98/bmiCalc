@@ -8,7 +8,7 @@ import sr.unasat.bmi.calculator.services.Helper;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-class BmiCalculatorView extends Application {
+class BmiCalculatorView {
     private User loggedInUser;
     Scanner userInput = new Scanner(System.in); //to read user input from console
 
