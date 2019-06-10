@@ -29,11 +29,19 @@ public class MealLogRepository {
             e.printStackTrace();
         }
         finally {
-            if (stmt != null){
-                stmt.close();
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
             }
-            if (connection != null){
-                connection.close();
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
             }
         }
     }

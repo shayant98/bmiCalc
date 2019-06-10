@@ -12,7 +12,7 @@ public class LogMealsView {
 
     User loggedInUser;
     Scanner userInput = new Scanner(System.in); //to read user input from console
-
+    Helper helper = new Helper();
     public LogMealsView(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
@@ -35,9 +35,10 @@ public class LogMealsView {
                     e.printStackTrace();
                 }
                 mealIdIsNumber = false;
-                Helper helper = new Helper();
+
                 helper.returnToMenu(loggedInUser);
             }else{
+                helper.errorMessage("Unknown Character.");
                 mealIdIsNumber = false;
                 userInput.next();
             }

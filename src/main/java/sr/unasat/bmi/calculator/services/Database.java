@@ -25,11 +25,11 @@ public class Database {
             dbConnection  = DriverManager.getConnection(URL,USER,PASS);
 
 
-            return dbConnection;
 
         } catch (SQLException e) {
 
-            System.out.println(e.getMessage());
+            System.out.println(e.getSQLState());
+
 
         }
 

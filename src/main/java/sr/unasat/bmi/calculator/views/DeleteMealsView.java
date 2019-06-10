@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DeleteMealsView {
     User loggedInUser;
     Scanner userInput = new Scanner(System.in); //to read user input from console
-
+    Helper helper = new Helper();
     public DeleteMealsView(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
@@ -30,17 +30,16 @@ public class DeleteMealsView {
                 if (mealExists == null){
                     System.out.println("meal not found");
                     mealIdIsNumber = false;
-                    continue;
+                    continue; //restarts the loop
                 }else{
                     System.out.println("deleting Meal...");
                     mealPlanRepository.deleteMealplanById(mealId);
-                    Helper helper = new Helper();
                     helper.returnToMenu(loggedInUser);
                 }
                 mealIdIsNumber = true;
             }
             else{
-                System.out.println("Key not recognised");
+                helper.errorMessage("Unknown Character.");
                 mealIdIsNumber = false;
                 userInput.next();
             }

@@ -34,6 +34,21 @@ public class mealTypeRepository {
 
         }catch (SQLException e){
             e.printStackTrace();
+        }finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
         }
         return mealType;
     }

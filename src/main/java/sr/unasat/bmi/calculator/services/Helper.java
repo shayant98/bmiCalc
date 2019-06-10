@@ -26,10 +26,19 @@ public class Helper {
         }
     }
 
+    /**
+     * @param Message
+     */
     public void errorMessage(String Message){
-        System.out.println("--------------------------------");
+        String dash = "";
+        for (int i = 0; i < Message.length()+14;i++){
+           dash = dash + '-';
+        }
+        System.out.println(dash);
         System.out.println("|--XX--"+Message+"--XX--|");
-        System.out.println("--------------------------------");
+        System.out.println(dash);
         System.out.println("Please try again!");
     }
+
+
 }

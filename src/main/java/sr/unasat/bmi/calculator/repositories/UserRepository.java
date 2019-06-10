@@ -11,7 +11,8 @@ public class UserRepository {
     private Connection connection;
     public UserRepository() {
         Database database = new Database();
-       connection = database.getDBConnection();
+           connection = database.getDBConnection();
+
     }
     public List<User> findAllUsers() {
         List<User> UserList = new ArrayList<>();
@@ -135,6 +136,7 @@ public class UserRepository {
         }
         return user;
     }
+
     public boolean login(String username, String password){
         PreparedStatement stmt = null;
         String sql = "SELECT * FROM users WHERE username= ? AND password = ?";

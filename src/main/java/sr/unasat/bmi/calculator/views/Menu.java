@@ -1,6 +1,7 @@
 package sr.unasat.bmi.calculator.views;
 
 import sr.unasat.bmi.calculator.entities.User;
+import sr.unasat.bmi.calculator.services.Helper;
 
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class Menu {
     public Menu(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
-
+    Helper helper = new Helper();
     public void showMenu(){
         System.out.println("---------- Menu ----------");
         boolean isNumber = false;
@@ -76,7 +77,7 @@ public class Menu {
                 }
                 isNumber = true;
             }else{
-                System.out.println("Character not accepted");
+                helper.errorMessage("Unknown Character.");
                 isNumber = false;
                 userInput.next();
             }

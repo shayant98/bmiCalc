@@ -16,7 +16,7 @@ public class MealPlanRepository {
 
     public List<MealPlan> GetAllMealplans(){
         List<MealPlan> mealPlanList = new ArrayList<>();
-        Statement stmt;
+        Statement stmt = null;
         try {
             stmt = connection.createStatement();
             String sql = "select * from meal_plans";
@@ -36,7 +36,20 @@ public class MealPlanRepository {
             e.printStackTrace();
         }
         finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
 
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
         }
         return mealPlanList;
     }
@@ -51,7 +64,20 @@ public class MealPlanRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
 
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
         }
     }
 
@@ -73,7 +99,20 @@ public class MealPlanRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
 
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
         }
         return mealPlan;
     }
@@ -90,7 +129,20 @@ public class MealPlanRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }finally {
+            try {
+                if(stmt != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
 
+            }
+            try {
+                if(connection != null){
+                    stmt.close();
+                }
+            }catch (SQLException e){
+
+            }
         }
     }
 }

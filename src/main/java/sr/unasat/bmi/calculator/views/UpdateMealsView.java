@@ -14,7 +14,7 @@ public class UpdateMealsView {
     public UpdateMealsView(User loggedInUser) {
         this.loggedInUser = loggedInUser;
     }
-
+    Helper helper = new Helper();
 
     public void showUpdateMealsScreen(){
         boolean mealIdIsNumber = false;
@@ -43,10 +43,11 @@ public class UpdateMealsView {
 
 
                     mealPlanRepository.updateMealById(mealToUpdate);
-                    Helper helper = new Helper();
+
                     helper.returnToMenu(loggedInUser);
                 }
             }else{
+                helper.errorMessage("Unknown Character.");
                 userInput.next();
                 mealIdIsNumber = false;
             }
