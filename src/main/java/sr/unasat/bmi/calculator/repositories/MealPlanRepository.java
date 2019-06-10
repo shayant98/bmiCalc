@@ -16,7 +16,7 @@ public class MealPlanRepository {
         connection = database.getDBConnection();
     }
 
-    public List<MealPlan> GetAllMealplans(){
+    public List<MealPlan> getAllMealplans(){
         List<MealPlan> mealPlanList = new ArrayList<>();
         Statement stmt = null;
         try {
@@ -24,7 +24,7 @@ public class MealPlanRepository {
             String sql = "select * from meal_plans";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.isBeforeFirst() ) {
-                System.out.println("No meals to view");
+               return null;
             }else {
                 while (rs.next()) {
                     mealPlanList.add(new MealPlan(rs.getInt("id"), rs.getString("name"), rs.getInt("type"), rs.getInt("calorie")));
@@ -82,7 +82,7 @@ public class MealPlanRepository {
         }
     }
 
-    public MealPlan findMealplanByid(int mealId){
+    public MealPlan findMealplanById(int mealId){
         MealPlan mealPlan = null;
         PreparedStatement stmt = null;
         String sql = "SELECT * FROM meal_plans WHERE id = ?";

@@ -19,14 +19,19 @@ public class DeleteMealsView {
     public void showDeleteMealsScreen(){
         boolean mealIdIsNumber = false;
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
-        mealPlanRepository.GetAllMealplans().forEach(mealPlan -> {
-            System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
-        });
+        if(mealPlanRepository.getAllMealplans() == null){
+            helper.errorMessage("No meals found!");
+            helper.returnToMenu(loggedInUser);
+        }else{
+            mealPlanRepository.getAllMealplans().forEach(mealPlan -> {
+                System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
+            });
+        }
         System.out.println("ID of meal to delete:");
         do {
             if (userInput.hasNextInt()){
                 int mealId = userInput.nextInt();
-                MealPlan mealExists = mealPlanRepository.findMealplanByid(mealId);
+                MealPlan mealExists = mealPlanRepository.findMealplanById(mealId);
                 if (mealExists == null){
                     System.out.println("meal not found");
                     mealIdIsNumber = false;

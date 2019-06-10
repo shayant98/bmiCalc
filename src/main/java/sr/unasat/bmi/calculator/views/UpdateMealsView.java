@@ -19,18 +19,25 @@ public class UpdateMealsView {
     public void showUpdateMealsScreen(){
         boolean mealIdIsNumber = false;
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
-        mealPlanRepository.GetAllMealplans().forEach(mealPlan -> {
-            System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
-        });
+        if(mealPlanRepository.getAllMealplans() == null){
+            helper.errorMessage("No meals found!");
+           helper.returnToMenu(loggedInUser);
+        }else{
+            mealPlanRepository.getAllMealplans().forEach(mealPlan -> {
+                System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
+            });
+        }
         System.out.println("ID of meal to update:");
         do {
             if (userInput.hasNextInt()){
                 int mealId = userInput.nextInt();
-                MealPlan mealToUpdate = mealPlanRepository.findMealplanByid(mealId);
+                MealPlan mealToUpdate = mealPlanRepository.findMealplanById(mealId);
                 if (mealToUpdate == null){
                     System.out.println("meal not found");
                     mealIdIsNumber = false;
+                    helper.returnToMenu(loggedInUser);
                     continue;
+
                 }else{
                     System.out.println("Meal Name: ");
                     mealToUpdate.setName(userInput.next());

@@ -68,11 +68,11 @@ public class BmiLogRepository {
     public BmiLog getSingleBmiLogByUserId(int id){
         BmiLog log = null;
         PreparedStatement stmt;
-        String sql = "SELECT * FROM bmi_logs WHERE user_id = ? ORDER BY ? asc  LIMIT 1";
+        String sql = "SELECT * FROM bmi_logs WHERE user_id = ? ORDER BY date desc  LIMIT 1";
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1,id);
-            stmt.setString(2,"date");
+//            stmt.setString(2,"date");
             ResultSet rs = stmt.executeQuery();
             if (!rs.isBeforeFirst() ) {
                 System.out.println("No user with given info");

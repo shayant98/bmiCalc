@@ -21,7 +21,7 @@ public class LogMealsView {
     public void showLogMealsScreen(){
         boolean mealIdIsNumber = false;
         MealPlanRepository mealPlanRepository = new MealPlanRepository();
-        mealPlanRepository.GetAllMealplans().forEach(mealPlan -> {
+        mealPlanRepository.getAllMealplans().forEach(mealPlan -> {
             System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
         });
         System.out.println("ID of meal to log:");
