@@ -25,7 +25,7 @@ public class mealTypeRepository {
 
             ResultSet rs = stmt.executeQuery();
             if(!rs.isBeforeFirst()){
-                System.out.println("no meal types");
+                System.out.println("No meal types to view!");
             }else{
                 rs.next();
                 mealType = rs.getString("name");

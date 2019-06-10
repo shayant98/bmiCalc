@@ -2,6 +2,7 @@ package sr.unasat.bmi.calculator.repositories;
 
 import sr.unasat.bmi.calculator.entities.MealPlan;
 import sr.unasat.bmi.calculator.services.Database;
+import sr.unasat.bmi.calculator.services.Helper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class MealPlanRepository {
     Connection connection;
+    Helper helper = new Helper();
     public MealPlanRepository() {
         Database database = new Database();
         connection = database.getDBConnection();
@@ -21,9 +23,8 @@ public class MealPlanRepository {
             stmt = connection.createStatement();
             String sql = "select * from meal_plans";
             ResultSet rs = stmt.executeQuery(sql);
-            //STEP 5: Extract data from result set
             if (!rs.isBeforeFirst() ) {
-                System.out.println("No user with given info");
+                System.out.println("No meals to view");
             }else {
                 while (rs.next()) {
                     mealPlanList.add(new MealPlan(rs.getInt("id"), rs.getString("name"), rs.getInt("type"), rs.getInt("calorie")));

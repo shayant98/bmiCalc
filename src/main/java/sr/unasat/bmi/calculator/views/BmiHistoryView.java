@@ -14,10 +14,9 @@ public class BmiHistoryView {
 
     public void showBmiHistoryScreen(){
         BmiLogRepository bmiLogRepository = new BmiLogRepository();
-        System.out.println("Date      | Weight  | BMI |");
           bmiLogRepository.getAllBmiLogByUserId(loggedInUser.getId()).forEach(bmiLog -> {
            String bmiMessage =  bmiLogRepository.checkBmiRange(bmiLog.getBmi());
-            System.out.println(bmiLog.getDate() + "| " + bmiLog.getWeight()+ " KG| " + bmiLog.getBmi()+ "| -----> "+ bmiMessage);
+            System.out.println("[DATE]: "+ bmiLog.getDate() + " [WEIGHT]: " + bmiLog.getWeight()+ " KG [BMI]: " + bmiLog.getBmi()+ " [CONCLUSION]: "+ bmiMessage);
         });
         Helper helper = new Helper();
         helper.returnToMenu(loggedInUser);

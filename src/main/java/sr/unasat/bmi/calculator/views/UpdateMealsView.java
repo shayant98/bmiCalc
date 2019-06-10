@@ -47,7 +47,7 @@ public class UpdateMealsView {
                     helper.returnToMenu(loggedInUser);
                 }
             }else{
-                helper.errorMessage("Unknown Character.");
+                helper.errorMessage();
                 userInput.next();
                 mealIdIsNumber = false;
             }

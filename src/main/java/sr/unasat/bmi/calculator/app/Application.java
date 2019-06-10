@@ -14,11 +14,21 @@ public class Application {
         String username;
         String password;
 
+//        APP NAME
+        System.out.println("\n" +
+                "  ____                _      _____           _                  _           _                  \n" +
+                " |  _ \\              (_)    / ____|         | |                | |         | |                 \n" +
+                " | |_) |  _ __ ___    _    | |        __ _  | |   ___   _   _  | |   __ _  | |_    ___    _ __ \n" +
+                " |  _ <  | '_ ` _ \\  | |   | |       / _` | | |  / __| | | | | | |  / _` | | __|  / _ \\  | '__|\n" +
+                " | |_) | | | | | | | | |   | |____  | (_| | | | | (__  | |_| | | | | (_| | | |_  | (_) | | |   \n" +
+                " |____/  |_| |_| |_| |_|    \\_____|  \\__,_| |_|  \\___|  \\__,_| |_|  \\__,_|  \\__|  \\___/  |_|   \n" +
+                "                                                                                               \n" +
+                "                                                                                               \n");
 
-        System.out.println("Log in");
-        System.out.println("Username: ");
+
+        System.out.println("[USERNAME]: ");
         username = userInput.next(); //returns string
-        System.out.println("Password: ");
+        System.out.println("PASSWORD: ");
         password = userInput.next(); //returns string
         boolean isLoggedIn = userRepository.login(username, password);
         if(isLoggedIn){

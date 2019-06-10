@@ -103,7 +103,7 @@ public class UserRepository {
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
             if (!rs.isBeforeFirst() ) {
-                System.out.println("No user with given info");
+                System.out.println("No user with given info!");
             }else{
                 rs.next();
 

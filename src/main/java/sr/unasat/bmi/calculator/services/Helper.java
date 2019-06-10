@@ -26,6 +26,10 @@ public class Helper {
         }
     }
 
+    public void errorMessage() {
+        errorMessage("Unknown Character.");
+    }
+
     /**
      * @param Message
      */

@@ -38,7 +38,7 @@ public class LogMealsView {
 
                 helper.returnToMenu(loggedInUser);
             }else{
-                helper.errorMessage("Unknown Character.");
+                helper.errorMessage();
                 mealIdIsNumber = false;
                 userInput.next();
             }

@@ -23,8 +23,8 @@ class BmiCalculatorView {
     public void showBmiCalculatorScreen(){
         boolean weightIsNumber = false;
         //show user height
-        System.out.println("Height: "+ loggedInUser.getHeight());
-        System.out.println("Weight:");
+        System.out.println("[HEIGHT]: "+ loggedInUser.getHeight());
+        System.out.println("[WEIGHT]:");
         do {
             if(userInput.hasNextInt()){
 
@@ -45,7 +45,7 @@ class BmiCalculatorView {
 
                 weightIsNumber = true;
             } else {
-                helper.errorMessage("Unknown Character.");
+                helper.errorMessage();
                 weightIsNumber = false;
                 userInput.next(); }
         }while (!weightIsNumber);

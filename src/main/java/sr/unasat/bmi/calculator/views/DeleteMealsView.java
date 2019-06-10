@@ -39,7 +39,7 @@ public class DeleteMealsView {
                 mealIdIsNumber = true;
             }
             else{
-                helper.errorMessage("Unknown Character.");
+                helper.errorMessage();
                 mealIdIsNumber = false;
                 userInput.next();
             }

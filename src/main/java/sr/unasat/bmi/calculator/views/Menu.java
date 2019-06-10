@@ -77,7 +77,7 @@ public class Menu {
                 }
                 isNumber = true;
             }else{
-                helper.errorMessage("Unknown Character.");
+                helper.errorMessage();
                 isNumber = false;
                 userInput.next();
             }

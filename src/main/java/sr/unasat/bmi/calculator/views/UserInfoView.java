@@ -15,12 +15,12 @@ class UserInfoView {
     public void showUserInfoScreen(){
         BmiLogRepository bmiLogRepository = new BmiLogRepository();
         BmiLog userLastBmi = bmiLogRepository.getSingleBmiLogByUserId(loggedInUser.getId());
-        System.out.println("Name: "+ loggedInUser.getName());
-        System.out.println("Surname: "+ loggedInUser.getSurname());
-        System.out.println("Height: "+ loggedInUser.getHeight()+ " M");
-        System.out.println("Last Weight: "+ userLastBmi.getWeight()+ " KG");
-        System.out.println("Last BMI: " + userLastBmi.getBmi());
-        System.out.println("last check: "+ userLastBmi.getDate());
+        System.out.println("[NAME]: "+ loggedInUser.getName());
+        System.out.println("[SURNAME]: "+ loggedInUser.getSurname());
+        System.out.println("[HEIGHT]: "+ loggedInUser.getHeight()+ " M");
+        System.out.println("[LAST WEIGHT]: "+ userLastBmi.getWeight()+ " KG");
+        System.out.println("[LAST BMI]: " + userLastBmi.getBmi());
+        System.out.println("[LAST CHECK]: "+ userLastBmi.getDate());
         Helper helper = new Helper();
         helper.returnToMenu(loggedInUser);
     }
