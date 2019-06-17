@@ -11,6 +11,8 @@ public class Menu {
             "BMI Calculator",
             "BMI History",
             "Log Meals",
+            "Update Meal Log",
+            "Delete Meal Log",
             "View Meals",
             "Delete Meals",
             "Update Meals",
@@ -51,6 +53,15 @@ public class Menu {
                         System.out.println("---------- Log Meals ----------");
                         LogMealsView logMealsView = new LogMealsView(loggedInUser);
                         logMealsView.showLogMealsScreen();
+                        break;
+                    case "Update Meal Log":
+                        System.out.println("---------- Update Meal Log ----------");
+                        UpdateMealsLogView updateMealsLogView = new UpdateMealsLogView(loggedInUser);
+                        updateMealsLogView.showUpdateMealsLogScreen();
+                        break;case "Delete Meal Log":
+                        System.out.println("---------- Update Meal Log ----------");
+                        DeleteMealsLogView deleteMealsLogView = new DeleteMealsLogView(loggedInUser);
+                        deleteMealsLogView.showDeleteMealsLogScreen();
                         break;
                     case "View Meals":
                         System.out.println("---------- View Meals ----------");
