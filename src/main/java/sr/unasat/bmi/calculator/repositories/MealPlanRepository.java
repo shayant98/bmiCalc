@@ -119,13 +119,14 @@ public class MealPlanRepository {
     }
 
     public void updateMealById(MealPlan updatedMealPlan){
-        String sql = "UPDATE meal_plans SET name = ?, type = ?,calorie = ?";
+        String sql = "UPDATE meal_plans SET name = ?, type = ?,calorie = ? WHERE id = ?";
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, updatedMealPlan.getName());
             stmt.setInt(2, updatedMealPlan.getType());
             stmt.setInt(3, updatedMealPlan.getCalorie());
+            stmt.setInt(4, updatedMealPlan.getId());
             stmt.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
