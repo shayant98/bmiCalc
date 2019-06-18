@@ -24,7 +24,7 @@ public class DeleteMealsLogView {
             helper.returnToMenu(loggedInUser);
         }else{
             mealLogRepository.getAllMealLogs().forEach(mealLog -> {
-                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserId()+"   "+"[MEAL]: "+ mealLog.getMealId());
+                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserName()+"   "+"[MEAL]: "+ mealLog.getMealName());
             });
         }
         System.out.println("ID of log to delete:");

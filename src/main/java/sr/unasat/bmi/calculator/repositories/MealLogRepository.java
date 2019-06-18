@@ -19,13 +19,16 @@ public class MealLogRepository {
         Statement stmt = null;
         try {
             stmt = connection.createStatement();
-            String sql = "select * from meal_logs";
+            String sql = "select *, u.name as UserName, mp.name as mealName from meal_logs INNER JOIN users u on meal_logs.user_id = u.id INNER JOIN meal_plans mp on meal_logs.meal_id = mp.id";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.isBeforeFirst() ) {
                return null;
             }else {
                 while (rs.next()) {
-                    mealLogList.add(new MealLog(rs.getInt("id"), rs.getInt("meal_id"),rs.getInt("user_id")));
+                    MealLog mealLog = new MealLog(rs.getInt("id"), rs.getInt("meal_id"),rs.getInt("user_id"));
+                    mealLog.setMealName(rs.getString("mealName"));
+                    mealLog.setUserName(rs.getString("UserName"));
+                    mealLogList.add(mealLog);
                 }
             }
             rs.close();

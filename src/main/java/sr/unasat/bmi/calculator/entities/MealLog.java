@@ -5,6 +5,8 @@ public class MealLog {
     private int id;
     private int mealId;
     private int userId;
+    private String userName;
+    private String mealName;
 
     public MealLog(int id, int mealId, int userId) {
         this.id = id;
@@ -34,6 +36,22 @@ public class MealLog {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getMealName() {
+        return mealName;
+    }
+
+    public void setMealName(String mealName) {
+        this.mealName = mealName;
     }
 
     @Override
