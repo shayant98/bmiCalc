@@ -19,9 +19,14 @@ public class DeleteMealsLogView {
     public void showDeleteMealsLogScreen(){
         boolean logIdIsNumber = false;
         MealLogRepository mealLogRepository = new MealLogRepository();
-        mealLogRepository.getAllMealLogs().forEach(mealLog -> {
-            System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserId()+"   "+"[MEAL]: "+ mealLog.getMealId());
-        });
+        if(mealLogRepository.getAllMealLogs() == null){
+            helper.errorMessage("No logs found!");
+            helper.returnToMenu(loggedInUser);
+        }else{
+            mealLogRepository.getAllMealLogs().forEach(mealLog -> {
+                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserId()+"   "+"[MEAL]: "+ mealLog.getMealId());
+            });
+        }
         System.out.println("ID of log to delete:");
         do {
             if (userInput.hasNextInt()){

@@ -22,7 +22,7 @@ public class MealLogRepository {
             String sql = "select * from meal_logs";
             ResultSet rs = stmt.executeQuery(sql);
             if (!rs.isBeforeFirst() ) {
-                System.out.println("No logs to view");
+               return null;
             }else {
                 while (rs.next()) {
                     mealLogList.add(new MealLog(rs.getInt("id"), rs.getInt("meal_id"),rs.getInt("user_id")));
