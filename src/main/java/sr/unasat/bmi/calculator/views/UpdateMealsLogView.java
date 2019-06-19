@@ -24,10 +24,10 @@ public class UpdateMealsLogView {
             helper.returnToMenu(loggedInUser);
         }else{
             mealLogRepository.getAllMealLogs().forEach(mealLog -> {
-                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserId()+"   "+"[MEAL]: "+ mealLog.getMealId());
+                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserName()+"   "+"[MEAL]: "+ mealLog.getMealName());
             });
         }
-        System.out.println("ID of log to update:");
+        System.out.println("ID of log to update or press r:");
         do {
             if (userInput.hasNextInt()){
                 int logId = userInput.nextInt();
@@ -36,11 +36,11 @@ public class UpdateMealsLogView {
                     System.out.println("log not found");
                     logIdIsNumber = false;
                     continue;
-                }else{
+                } else{
                     System.out.println("User ID: ");
                     logToUpdate.setUserId(userInput.nextInt());
                     System.out.println("Meal ID: ");
-                    userInput.nextLine(); //idk why but fixed the error
+                    userInput.nextLine();
                     logToUpdate.setMealId(userInput.nextInt());
 
 
@@ -48,7 +48,9 @@ public class UpdateMealsLogView {
 
                     helper.returnToMenu(loggedInUser);
                 }
-            }else{
+            } else if (userInput.next().equals("r")) {
+                helper.returnToMenu(loggedInUser);
+            } else{
                 helper.errorMessage();
                 userInput.next();
                 logIdIsNumber = false;

@@ -124,12 +124,13 @@ public class MealLogRepository {
     }
 
     public void updateMealLogById(MealLog updatedMealLog){
-        String sql = "UPDATE meal_logs SET user_id = ?, meal_id = ?";
+        String sql = "UPDATE meal_logs SET user_id = ?, meal_id = ? WHERE id = ?";
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement(sql);
             stmt.setInt(1, updatedMealLog.getUserId());
             stmt.setInt(2, updatedMealLog.getMealId());
+            stmt.setInt(3, updatedMealLog.getId());
             stmt.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
