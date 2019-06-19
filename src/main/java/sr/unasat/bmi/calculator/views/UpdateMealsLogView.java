@@ -19,11 +19,11 @@ public class UpdateMealsLogView {
     public void showUpdateMealsLogScreen(){
         boolean logIdIsNumber = false;
         MealLogRepository mealLogRepository = new MealLogRepository();
-        if(mealLogRepository.getAllMealLogs() == null){
+        if(mealLogRepository.getAllMealLogs(loggedInUser.getId()) == null){
             helper.errorMessage("No logs found!");
             helper.returnToMenu(loggedInUser);
         }else{
-            mealLogRepository.getAllMealLogs().forEach(mealLog -> {
+            mealLogRepository.getAllMealLogs(loggedInUser.getId()).forEach(mealLog -> {
                 System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserName()+"   "+"[MEAL]: "+ mealLog.getMealName());
             });
         }

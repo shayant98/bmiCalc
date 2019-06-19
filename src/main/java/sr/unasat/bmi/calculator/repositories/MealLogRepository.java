@@ -14,13 +14,15 @@ public class MealLogRepository {
         Database database = new Database();
         connection = database.getDBConnection();
     }
-    public List<MealLog> getAllMealLogs(){
+    public List<MealLog> getAllMealLogs(int userId){
         List<MealLog> mealLogList = new ArrayList<>();
-        Statement stmt = null;
+        PreparedStatement stmt = null;
+        String sql = "select *, u.name as UserName, mp.name as mealName from meal_logs INNER JOIN users u on meal_logs.user_id = u.id INNER JOIN meal_plans mp on meal_logs.meal_id = mp.id " +
+                "WHERE meal_logs.user_id = ?";
         try {
-            stmt = connection.createStatement();
-            String sql = "select *, u.name as UserName, mp.name as mealName from meal_logs INNER JOIN users u on meal_logs.user_id = u.id INNER JOIN meal_plans mp on meal_logs.meal_id = mp.id";
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
             if (!rs.isBeforeFirst() ) {
                return null;
             }else {
