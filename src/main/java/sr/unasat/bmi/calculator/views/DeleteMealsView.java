@@ -27,7 +27,7 @@ public class DeleteMealsView {
                 System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
             });
         }
-        System.out.println("ID of meal to delete:");
+        System.out.println("ID of meal to delete or press 'R' to cancel:");
         do {
             if (userInput.hasNextInt()){
                 int mealId = userInput.nextInt();
@@ -42,6 +42,8 @@ public class DeleteMealsView {
                     helper.returnToMenu(loggedInUser);
                 }
                 mealIdIsNumber = true;
+            }else if (helper.returnKeyPressed(userInput.next())) {
+                helper.returnToMenu(loggedInUser);
             }
             else{
                 helper.errorMessage();

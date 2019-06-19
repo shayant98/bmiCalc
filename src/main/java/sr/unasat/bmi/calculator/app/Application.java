@@ -46,7 +46,7 @@ public class Application {
                 System.out.println("Type 'R' to retry");
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 String input = br.readLine();
-                if(input.equals("R"))
+                if(input.toUpperCase().equals("R"))
                     restart(args);
                 else
                     helper.errorMessage("No user with given info");

@@ -27,7 +27,7 @@ public class UpdateMealsLogView {
                 System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER ID]: "+ mealLog.getUserId()+" [USER]: "+ mealLog.getUserName()+"   "+"[MEAL ID]: "+ mealLog.getMealId() + " [MEAL]: "+ mealLog.getMealName());
             });
         }
-        System.out.println("ID of log to update or press r:");
+        System.out.println("ID of log to update or press 'R' to cancel:");
         do {
             if (userInput.hasNextInt()){
                 int logId = userInput.nextInt();
@@ -48,7 +48,7 @@ public class UpdateMealsLogView {
 
                     helper.returnToMenu(loggedInUser);
                 }
-            } else if (userInput.next().equals("r")) {
+            } else if (helper.returnKeyPressed(userInput.next())) {
                 helper.returnToMenu(loggedInUser);
             } else{
                 helper.errorMessage();

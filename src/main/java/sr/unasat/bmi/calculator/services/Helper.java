@@ -17,7 +17,7 @@ public class Helper {
         System.out.println("Press 'R' to return to menu");
         while (true){ //infinte loop
             String returnKey = userInput.next();
-            if(returnKey.toUpperCase().equals("R")){
+            if(returnKeyPressed(returnKey)){
                 menu.showMenu();
                 break;
             }else{
@@ -42,6 +42,15 @@ public class Helper {
         System.out.println("|--XX--"+Message+"--XX--|");
         System.out.println(dash);
         System.out.println("Please try again!");
+    }
+
+
+    public boolean returnKeyPressed(String key){
+        if(key.toUpperCase().equals("R")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 

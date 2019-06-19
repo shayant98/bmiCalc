@@ -27,7 +27,7 @@ public class DeleteMealsLogView {
                 System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserName()+"   "+"[MEAL]: "+ mealLog.getMealName());
             });
         }
-        System.out.println("ID of log to delete:");
+        System.out.println("ID of log to delete or press 'R' to cancel:");
         do {
             if (userInput.hasNextInt()){
                 int logId = userInput.nextInt();
@@ -37,10 +37,12 @@ public class DeleteMealsLogView {
                     logIdIsNumber = false;
                     continue;
                 }else{
-                    System.out.println("deleting Meal...");
+                    System.out.println("deleting Log...");
                     mealLogRepository.deleteMealLogById(logId);
                     helper.returnToMenu(loggedInUser);
                 }
+            }else if (helper.returnKeyPressed(userInput.next())) {
+                helper.returnToMenu(loggedInUser);
             }else{
                 helper.errorMessage();
                 userInput.next();

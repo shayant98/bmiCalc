@@ -27,7 +27,7 @@ public class UpdateMealsView {
                 System.out.println("[ID]: "+ mealPlan.getId() +"   "+"[NAME]: "+ mealPlan.getName());
             });
         }
-        System.out.println("ID of meal to update:");
+        System.out.println("ID of meal to updateor press 'R' to cancel:");
         do {
             if (userInput.hasNextInt()){
                 int mealId = userInput.nextInt();
@@ -53,6 +53,8 @@ public class UpdateMealsView {
 
                     helper.returnToMenu(loggedInUser);
                 }
+            }else if (helper.returnKeyPressed(userInput.next())) {
+                helper.returnToMenu(loggedInUser);
             }else{
                 helper.errorMessage();
                 userInput.next();
