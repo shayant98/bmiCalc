@@ -15,3 +15,9 @@ De user kan ook andere maltijden toevoegen in het systeem voor meer variatie in 
 * ~~Minimaal 3 tabellen~~
 * ~~CRUD functionaliteiten in T3 (meal_logs)~~
 * ~~JOIN~~
+* ~~Werkend applicatie~~
+
+## Beoordelingscriteria
+Tijdens de beroepsproduct verdediging welke individueel geschied dient de student d.m.v. het
+vervaardigd beroepsproduct en de bijbehorende toelichtingen te tonen dat de geleerde concepten zijn
+begrepen.
