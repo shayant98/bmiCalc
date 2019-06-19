@@ -4,6 +4,7 @@ import sr.unasat.bmi.calculator.entities.User;
 import sr.unasat.bmi.calculator.repositories.UserRepository;
 import sr.unasat.bmi.calculator.services.Helper;
 import sr.unasat.bmi.calculator.views.Menu;
+import java.io.*;
 
 import java.util.Scanner;
 
@@ -39,7 +40,26 @@ public class Application {
             menu.showMenu();
         }else{
             Helper helper = new Helper();
-            helper.errorMessage("No user with given info");
+
+            try{
+                System.out.println("Login failed");
+                System.out.println("Type 'R' to retry");
+                BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+                String input = br.readLine();
+                if(input.equals("R"))
+                    restart(args);
+                else
+                    helper.errorMessage("No user with given info");
+            }
+            catch(Exception e)
+            {e.printStackTrace();}
         }
     }
+
+    private static void restart(String[] strArr)
+    {
+        System.out.println("You restarted");
+        main(strArr);
+    }
+
 }
