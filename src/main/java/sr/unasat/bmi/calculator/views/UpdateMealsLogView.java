@@ -24,7 +24,7 @@ public class UpdateMealsLogView {
             helper.returnToMenu(loggedInUser);
         }else{
             mealLogRepository.getAllMealLogs(loggedInUser.getId()).forEach(mealLog -> {
-                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER]: "+ mealLog.getUserName()+"   "+"[MEAL]: "+ mealLog.getMealName());
+                System.out.println("[ID]: "+ mealLog.getId() +"   "+"[USER ID]: "+ mealLog.getUserId()+" [USER]: "+ mealLog.getUserName()+"   "+"[MEAL ID]: "+ mealLog.getMealId() + " [MEAL]: "+ mealLog.getMealName());
             });
         }
         System.out.println("ID of log to update or press r:");
