@@ -112,7 +112,7 @@ public class BmiLogRepository {
             }
             try {
                 if(connection != null){
-                    stmt.close();
+                    connection.close();
                 }
             }catch (SQLException e){
 

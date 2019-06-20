@@ -34,3 +34,5 @@ out
 gen
 
 env.json
+src/test/
+target/generated-sources/
